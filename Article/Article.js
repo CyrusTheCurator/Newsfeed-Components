@@ -143,7 +143,7 @@ let articleCreator = data => {
   contentP1.textContent = data.firstParagraph;
   contentP2.textContent = data.secondParagraph;
   contentP3.textContent = data.thirdParagraph;
-
+  expandButton.textContent = "READ MORE";
   article.appendChild(h2);
   article.appendChild(p);
   article.appendChild(contentP1);
@@ -154,10 +154,16 @@ let articleCreator = data => {
   article.classList.add("article");
   p.classList.add("date");
   expandButton.classList.add("expandButton");
+  article.style.transition = "all .6s";
   console.log(`we just made this article: `, article);
 
   expandButton.addEventListener("click", event => {
     article.classList.toggle("article-open");
+    if (expandButton.textContent == "READ MORE") {
+      expandButton.textContent = "READ LESS";
+    } else {
+      expandButton.textContent = "READ MORE";
+    }
   });
 
   return article;

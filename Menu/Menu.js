@@ -33,11 +33,12 @@ let menuItems = [
   Step 6: add the menu component to the DOM.
   
 */
+
 let header = document.querySelector(".header");
+let menuButton = document.querySelector(".menu-button");
 let menuCreator = items => {
   let menu = document.createElement("div");
   let ul = document.createElement("ul");
-  menu.appendChild(ul);
 
   menu.classList.add("menu");
 
@@ -46,9 +47,27 @@ let menuCreator = items => {
     menuItem.textContent = menuString;
     ul.appendChild(menuItem);
   });
-
+  console.log(menu);
+  menu.appendChild(ul);
+  console.log(menu);
   console.log(ul);
-  return ul;
+  return menu;
 };
 
 header.prepend(menuCreator(menuItems));
+
+let menuClassThing = document.querySelector(".menu");
+
+let toggleMenu = () => {
+  gsap.to(".menu", { duration: 0.001, x: -300 });
+
+  console.log(
+    `ya clicked the menu button bro and now the class for the thing is ${menuClassThing.classList}`
+  );
+
+  menuClassThing.classList.toggle("menu--open");
+
+  gsap.to(".menu", { duration: 1, x: 0 });
+};
+
+menuButton.addEventListener("click", toggleMenu);
